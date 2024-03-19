@@ -10,13 +10,11 @@ const Home = () => {
     <div className={css.homePage}>
       <Container>
         <div className={css.contentPage}>
-          <h1 className={css.titleH1}>
+          <h1 className={css.title}>
             Make Life Easier <br />
             for the Family:
           </h1>
-          <p className={css.titleH2}>
-            Find Babysitters Online for All Occasions
-          </p>
+          <p className={css.text}>Find Babysitters Online for All Occasions</p>
           <button className={css.button}>
             <NavLink to="/login">
               Get started{' '}

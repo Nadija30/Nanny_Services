@@ -17,17 +17,19 @@
   padding-top: 251px;
   padding-left: 0px;
 }
-.titleH1 {
+.title {
   font-weight: 500;
   font-size: 70px;
   line-height: 70px;
   padding-bottom: 28px;
+  color: var(--color-primary-light);
 }
-.titleH2 {
+.text {
   font-weight: 400;
   font-size: 28px;
   line-height: 30px;
   padding-bottom: 64px;
+  color: var(--color-primary-light);
 }
 .button {
   display: flex;
