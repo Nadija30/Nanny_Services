@@ -1,0 +1,10 @@
+.homePage {
+	margin-top: 32px;
+	background-color: var(--color-accent);
+	height: 500px;
+	max-width: 1376px;
+	height: 736px;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 30px;
+}

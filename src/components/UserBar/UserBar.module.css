@@ -1,0 +1,15 @@
+.logOut{
+    font-size: 16px;
+    line-height: 1.25;
+    color: var(--color-primary-light);
+    background-color: transparent;
+    border-radius: 30px;
+    border: 1px solid var(--color-primary-lighter);
+    padding: 14px 39px;
+    cursor: pointer;
+    transition: border-color 150ms linear, color 150ms linear;
+}
+.logOut:hover, .logOut:focus{
+    color: var(--color-accent-lighter);
+    border-color: var(--color-accent-lighter);;
+}
