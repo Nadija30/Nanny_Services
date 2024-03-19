@@ -1,0 +1,23 @@
+.navBar {
+  display: flex;
+  gap: 40px;
+  font-size: 16px;
+  line-height: 1.25;
+}
+.link {
+  color: var(--color-primary-light);
+  transition: color 150ms linear;
+}
+.linkActive::after {
+  content: '';
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-primary-light);
+  margin: 6px auto;
+}
+.link:hover,
+.link:focus {
+  color: var(--color-accent-lighter);
+}
