@@ -1,7 +1,8 @@
 :root {
   --color-primary-dark: #11101c;
   --color-primary-darker: rgba(17, 16, 28, 0.5);
-  --color-secondary-dark: ;
+  --color-primary-border: rgba(17, 16, 28, 0.1);
+  --color-backdrop: rgba(11, 11, 11, 0.6);
   --color-primary-lightest: #fff;
   --color-primary-light: #fbfbfb;
   --color-primary-lighter: rgba(251, 251, 251, 0.4);

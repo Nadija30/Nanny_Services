@@ -4,6 +4,7 @@ import { Container } from '../Container/Container';
 import css from './Header.module.css';
 import { UserNav } from '../UserNav/UserNav';
 import { UserBar } from '../UserBar/UserBar';
+import { AuthNav } from '../AuthNavigation/AuthNavigation';
 // import { useEffect } from "react";
 
 export const Header = ({ location }) => {
@@ -19,6 +20,7 @@ export const Header = ({ location }) => {
           </Link>
           {/* {isLoggedIn ? <UserNav />: <AuthNav />} */}
           <UserNav />
+          <AuthNav />
           <UserBar />
         </nav>
       </Container>
