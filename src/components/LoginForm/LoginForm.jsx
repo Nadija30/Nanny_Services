@@ -36,6 +36,7 @@ const LoginForm = () => {
   const handleLogin = (email, password) => {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password).then(({ user }) => {
+      const userName = user.displayName;
       user
         .getIdToken()
         .then((accessToken) => {
@@ -46,6 +47,7 @@ const LoginForm = () => {
               email: user.email,
               id: user.uid,
               token: accessToken,
+              name: userName,
             })
           );
           navigate('catalog');

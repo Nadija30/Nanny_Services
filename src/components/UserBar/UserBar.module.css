@@ -1,15 +1,55 @@
-.logOut{
-    font-size: 16px;
-    line-height: 1.25;
-    color: var(--color-primary-light);
-    background-color: transparent;
-    border-radius: 30px;
-    border: 1px solid var(--color-primary-lighter);
-    padding: 14px 39px;
-    cursor: pointer;
-    transition: border-color 150ms linear, color 150ms linear;
+.logOut {
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--color-primary-light);
+  background-color: transparent;
+  border-radius: 30px;
+  border: 1px solid var(--color-primary-lighter);
+  padding: 14px 39px;
+  cursor: pointer;
+  transition: border-color 150ms linear, color 150ms linear;
 }
-.logOut:hover, .logOut:focus{
-    color: var(--color-accent-lighter);
-    border-color: var(--color-accent-lighter);;
+.logOut:hover,
+.logOut:focus {
+  color: var(--color-accent-lighter);
+  border-color: var(--color-accent-lighter);
+}
+
+.blockWrap {
+  display: flex;
+  width: 252px;
+  min-width: 238px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.userBlock {
+  display: flex;
+  width: 94px;
+  gap: 14px;
+  align-items: center;
+}
+
+.userSvgWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--color-primary-light);
+}
+
+.userSvg {
+  width: 24px;
+  height: 24px;
+  fill: var(--color-accent);
+}
+
+.userName {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.11;
+  letter-spacing: -0.18px;
+  color: var(--color-primary-light);
 }

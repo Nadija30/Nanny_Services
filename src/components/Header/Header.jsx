@@ -5,12 +5,10 @@ import css from './Header.module.css';
 import { UserNav } from '../UserNav/UserNav';
 import { UserBar } from '../UserBar/UserBar';
 import { AuthNav } from '../AuthNavigation/AuthNavigation';
-// import { useEffect } from "react";
-// const dispatch = useDispatch();
-// const { isAutch, email } = useAuth();
+import { useAuth } from '../../hooks/use-auth';
 
 export const Header = ({ location }) => {
-  // const isLoggedIn = useSelector(selectIsLoggedIn);
+  const { isAutch, email } = useAuth();
   return (
     <div
       className={`${css.header} ${location === '/' ? css.home : css.catalog}`}
@@ -20,10 +18,17 @@ export const Header = ({ location }) => {
           <Link className={css.logo} to="/">
             Nanny.Services
           </Link>
-          {/* {isLoggedIn ? <UserNav />: <AuthNav />} */}
-          <UserNav />
-          <AuthNav />
-          <UserBar />
+          {isAutch ? (
+            <>
+              <UserNav />
+              <UserBar />
+            </>
+          ) : (
+            <>
+              <UserNav />
+              <AuthNav />
+            </>
+          )}
         </nav>
       </Container>
     </div>

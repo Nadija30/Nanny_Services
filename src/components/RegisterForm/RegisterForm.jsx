@@ -39,7 +39,7 @@ const RegisterForm = () => {
     setPasswordVisible(!passwordVisible);
   };
 
-  const handleRegister = (email, password) => {
+  const handleRegister = (email, password, name) => {
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
@@ -53,6 +53,7 @@ const RegisterForm = () => {
                 email: user.email,
                 id: user.uid,
                 token: accessToken,
+                name: name,
               })
             );
             navigate('catalog');
@@ -73,7 +74,7 @@ const RegisterForm = () => {
     <Formik
       initialValues={initialValues}
       onSubmit={(values, actions) => {
-        handleRegister(values.email, values.password);
+        handleRegister(values.email, values.password, values.name);
         actions.setSubmitting(false);
       }}
       validationSchema={registrationValidationSchema}
@@ -93,6 +94,8 @@ const RegisterForm = () => {
                   id="name"
                   type="name"
                   name="name"
+                  value={values.name}
+                  onChange={(e) => setFieldValue('name', e.target.value)}
                   placeholder="Name"
                   autoComplete="off"
                   className={`${css.input}
