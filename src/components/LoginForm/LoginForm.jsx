@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import css from './LoginForm.module.css';
 import * as yup from 'yup';
 import sprite from '../../img/sprite.svg';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../redux/userSlise';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 const loginValidationSchema = yup.object().shape({
   email: yup.string().email('Invalid email address').required('Required'),
@@ -20,20 +24,34 @@ const initialValues = {
 };
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [emailVisible, setEmailVisible] = useState(false);
 
   const handleClickPasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
 
-  const handleSubmit = ({ email, password }, { resetForm }) => {
-    dispatch(
-      login({
-        email,
-        password,
-      })
-    );
-    resetForm();
+  const handleLogin = (email, password) => {
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password).then(({ user }) => {
+      user
+        .getIdToken()
+        .then((accessToken) => {
+          console.log('User registered successfully:', user);
+          console.log('Access Token:', accessToken);
+          dispatch(
+            setUser({
+              email: user.email,
+              id: user.uid,
+              token: accessToken,
+            })
+          );
+          navigate('catalog');
+        })
+        .catch(() => allert('Invalid user'));
+    });
   };
 
   const hasFieldError = (errors, fieldName) => errors[fieldName];
@@ -41,7 +59,10 @@ const LoginForm = () => {
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={handleSubmit}
+      onSubmit={(values, actions) => {
+        handleLogin(values.email, values.password);
+        actions.setSubmitting(false);
+      }}
       validationSchema={loginValidationSchema}
     >
       {({ isSubmitting, errors, touched, values, setFieldValue }) => (
@@ -58,6 +79,8 @@ const LoginForm = () => {
                   id="email"
                   type="email"
                   name="email"
+                  value={values.email}
+                  onChange={(e) => setFieldValue('email', e.target.value)}
                   placeholder="Email"
                   autoComplete="off"
                   className={`${css.input}
@@ -71,6 +94,8 @@ const LoginForm = () => {
                     id="password"
                     type={passwordVisible ? 'text' : 'password'}
                     name="password"
+                    value={values.password}
+                    onChange={(e) => setFieldValue('password', e.target.value)}
                     placeholder="Password"
                     autoComplete="off"
                     className={`${css.input}
@@ -111,7 +136,7 @@ const LoginForm = () => {
               disabled={isSubmitting}
               className={css.button}
             >
-              Log In
+              Sign Up
             </button>
           </div>
         </Form>

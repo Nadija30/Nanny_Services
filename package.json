@@ -27,6 +27,7 @@
 		"yup": "^1.4.0"
 	},
 	"devDependencies": {
+		"@types/redux-devtools-extension": "^2.13.2",
 		"@vitejs/plugin-react": "^4.2.1",
 		"eslint": "^8.57.0",
 		"eslint-plugin-react": "^7.34.0",

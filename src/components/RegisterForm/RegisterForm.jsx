@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import css from './RegisterForm.module.css';
 import * as yup from 'yup';
 import sprite from '../../img/sprite.svg';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../redux/userSlise';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
 const registrationValidationSchema = yup.object().shape({
   name: yup
@@ -26,21 +30,40 @@ const initialValues = {
   password: '',
 };
 const RegisterForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [emailVisible, setEmailVisible] = useState(false);
 
   const handleClickPasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
 
-  const handleSubmit = ({ name, email, password }, { resetForm }) => {
-    dispatch(
-      register({
-        name,
-        email,
-        password,
+  const handleRegister = (email, password) => {
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(({ user }) => {
+        user
+          .getIdToken()
+          .then((accessToken) => {
+            console.log('User registered successfully:', user);
+            console.log('Access Token:', accessToken);
+            dispatch(
+              setUser({
+                email: user.email,
+                id: user.uid,
+                token: accessToken,
+              })
+            );
+            navigate('catalog');
+          })
+          .catch((error) => {
+            console.error('Error getting ID token:', error);
+          });
       })
-    );
-    resetForm();
+      .catch((error) => {
+        console.error('Error registering user:', error);
+      });
   };
 
   const hasFieldError = (errors, fieldName) => errors[fieldName];
@@ -49,7 +72,10 @@ const RegisterForm = () => {
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={handleSubmit}
+      onSubmit={(values, actions) => {
+        handleRegister(values.email, values.password);
+        actions.setSubmitting(false);
+      }}
       validationSchema={registrationValidationSchema}
     >
       {({ isSubmitting, errors, touched, values, setFieldValue }) => (
@@ -79,6 +105,8 @@ const RegisterForm = () => {
                   id="email"
                   type="email"
                   name="email"
+                  value={values.email}
+                  onChange={(e) => setFieldValue('email', e.target.value)}
                   placeholder="Email"
                   autoComplete="off"
                   className={`${css.input}
@@ -92,6 +120,8 @@ const RegisterForm = () => {
                     id="password"
                     type={passwordVisible ? 'text' : 'password'}
                     name="password"
+                    value={values.password}
+                    onChange={(e) => setFieldValue('password', e.target.value)}
                     placeholder="Password"
                     autoComplete="off"
                     className={`${css.input}

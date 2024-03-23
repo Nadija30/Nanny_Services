@@ -2,6 +2,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import { lazy, useEffect } from 'react';
 import { Layout } from './layout';
 import './App.css';
+import LoginForm from './LoginForm/LoginForm';
 
 const Home = lazy(() => import('./pages/Home/HomePage'));
 const Catalog = lazy(() => import('./pages/Catalog/CatalogPage'));
