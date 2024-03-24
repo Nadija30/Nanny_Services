@@ -5,12 +5,12 @@ import LoginForm from '../LoginForm/LoginForm';
 import RegisterForm from '../RegisterForm/RegisterForm';
 
 export const AuthNav = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false); // Стан для відстеження відкриття/закриття модального вікна
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
   const [modalHeight, setModalHeight] = useState('auto');
   const openModal = () => {
     setIsModalOpen(true);
-    setModalHeight('490px'); // Встановлення висоти модалки для логіну
+    setModalHeight('490px');
   };
 
   const closeModal = () => {
@@ -18,7 +18,7 @@ export const AuthNav = () => {
   };
   const openRegisterModal = () => {
     setIsRegisterModalOpen(true);
-    setModalHeight('580px'); // Встановлення висоти модалки для логіну
+    setModalHeight('580px');
   };
 
   const closeRegisterModal = () => {
