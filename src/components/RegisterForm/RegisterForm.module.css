@@ -1,13 +1,14 @@
 .form {
   display: flex;
   box-sizing: border-box;
+  flex-direction: row;
 }
 .formContainer {
-  box-sizing: border-box;
   display: flex;
+  box-sizing: border-box;
   flex-direction: column;
   align-items: flex-start;
-  width: 438px;
+  max-width: 438px;
 }
 .title {
   box-sizing: border-box;
@@ -38,7 +39,7 @@
   border: none;
   position: relative;
   box-sizing: border-box;
-  height: 100%;
+  height: 52px;
   color: var(--color-primary-dark);
   font-size: 16px;
   padding-left: 18px;
@@ -65,7 +66,6 @@
   outline: 1px solid rgba(248, 5, 5, 0.973);
 }
 .button {
-  width: 438px;
   height: 52px;
   padding: 16px, 196px, 16px, 196px;
   border-radius: 30px;
@@ -74,11 +74,11 @@
   font-size: 16px;
   font-weight: 500;
   line-height: 20px;
+  width: 100%;
 }
+
 .passwordWrap {
   position: relative;
-  width: 438px;
-  height: 52px;
 }
 .iconBtn {
   position: absolute;
