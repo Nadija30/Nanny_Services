@@ -7,8 +7,11 @@
   --color-primary-light: #fbfbfb;
   --color-primary-lighter: rgba(251, 251, 251, 0.4);
   --color-secondary-darker: ;
+  --color-secondary-dark: #8a8a89;
   --color-light: rgba(17, 16, 28, 0.2);
   --color-light-a: rgba(17, 16, 28, 0.3);
+  --color-light-b: rgba(17, 16, 28, 0.5);
+  --color-light-c: rgba(17, 16, 28, 0.1);
   --color-light-a-hover: rgba(17, 16, 28, 0.6);
   --color-accent-lighter: rgb(186, 232, 222);
   --color-accent: #103931;
@@ -18,6 +21,21 @@
   --color-back: #f3f3f3;
   --color-star: #ffc531;
   --color-price: #38cd3e;
+  --color-error: #f03f3b;
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  src: url('./fonts/helvetica-neue-5/HelveticaNeueRoman.otf');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  src: url('./fonts/helvetica-neue-5/HelveticaNeueBold.otf');
 }
 * {
   box-sizing: border-box;

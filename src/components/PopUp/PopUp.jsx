@@ -2,9 +2,15 @@ import ReactDOM from 'react-dom';
 import svg from '../../img/sprite.svg';
 import css from './PopUp.module.css';
 
-export const PopUp = ({ closePopUp }) => {
-  document.body.style.overflow = 'hidden';
-
+export const PopUp = ({ closePopUp, children }) => {
+  const handleEscapeKey = (event) => {
+    if (event.code === 'Escape') {
+      closePopUp();
+      document.body.style.overflow = 'scroll';
+      document.removeEventListener('keydown', handleEscapeKey);
+    }
+  };
+  document.addEventListener('keydown', handleEscapeKey);
   const handleClose = (e) => {
     if (
       e.target.dataset.type === 'backdrop' ||
@@ -24,7 +30,8 @@ export const PopUp = ({ closePopUp }) => {
         >
           <use href={`${svg}#icon-x`}></use>
         </svg>
-        <p>Adding to favorites is only available to logged users.</p>
+        {/* <p>Adding to favorites is only available to logged users.</p> */}
+        <div className={css.modalWrapper}>{children}</div>
       </div>
     </div>,
     document.getElementById('popup')

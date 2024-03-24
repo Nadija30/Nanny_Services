@@ -6,11 +6,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addFav, removeFav } from '../../redux/slise';
 import { PopUp } from '../PopUp/PopUp';
 import { selectFav } from '../../redux/selectors';
+import { Appointment } from '../ApoitmentForm/ApoitmentForm';
 
 export const CatalogItem = ({ one, isOnFavPage }) => {
   const [ismore, setIsmore] = useState(false);
   // const [like, setLike] = useState(false);
-  const [popUp, setPopUp] = useState(false);
+  const [ispopUp, setPopUp] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -152,7 +153,11 @@ export const CatalogItem = ({ one, isOnFavPage }) => {
           </div>
         )}
       </div>
-      {popUp && <PopUp closePopUp={closePopUp} />}
+      {ispopUp && (
+        <PopUp closePopUp={closePopUp}>
+          <Appointment img={one.avatar_url} name={one.name} />
+        </PopUp>
+      )}
     </li>
   );
 };
