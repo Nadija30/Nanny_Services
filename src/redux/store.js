@@ -18,7 +18,7 @@ import { userReduser } from './userSlise';
 const nanniesPersistConfig = {
   key: 'nannies',
   storage,
-  whitelist: ['favorites', 'page'],
+  whitelist: ['favorites', 'filter', 'page'],
 };
 
 const userConfig = {
