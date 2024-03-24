@@ -35,25 +35,34 @@ const LoginForm = () => {
 
   const handleLogin = (email, password) => {
     const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password).then(({ user }) => {
-      const userName = user.displayName;
-      user
-        .getIdToken()
-        .then((accessToken) => {
-          console.log('User registered successfully:', user);
-          console.log('Access Token:', accessToken);
-          dispatch(
-            setUser({
-              email: user.email,
-              id: user.uid,
-              token: accessToken,
-              name: userName,
-            })
-          );
-          navigate('catalog');
-        })
-        .catch(() => allert('Invalid user'));
-    });
+    signInWithEmailAndPassword(auth, email, password)
+      .then(({ user }) => {
+        const userId = user.uid;
+        const userEmail = user.email;
+        const userName = '';
+        user
+          .getIdToken()
+          .then((accessToken) => {
+            console.log('User registered successfully:', user);
+            console.log('Access Token:', accessToken);
+            const userName = user.displayName;
+            dispatch(
+              setUser({
+                email: userEmail,
+                id: userId,
+                token: accessToken,
+                name: userName,
+              })
+            );
+            navigate('catalog');
+          })
+          .catch((error) => {
+            console.error('Error getting ID token:', error);
+          });
+      })
+      .catch((error) => {
+        console.error('Error login user:', error);
+      });
   };
 
   const hasFieldError = (errors, fieldName) => errors[fieldName];

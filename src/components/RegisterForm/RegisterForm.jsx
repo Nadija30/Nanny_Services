@@ -6,7 +6,11 @@ import * as yup from 'yup';
 import sprite from '../../img/sprite.svg';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../redux/userSlise';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from 'firebase/auth';
 
 const registrationValidationSchema = yup.object().shape({
   name: yup
@@ -42,24 +46,33 @@ const RegisterForm = () => {
   const handleRegister = (email, password, name) => {
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, password)
-      .then(({ user }) => {
-        user
-          .getIdToken()
-          .then((accessToken) => {
-            console.log('User registered successfully:', user);
-            console.log('Access Token:', accessToken);
+      .then((credential) => {
+        // Реєстрація користувача успішна
+        const user = credential.user;
+        // Оновлення профілю користувача з власною логікою
+        const updatedUser = {
+          ...user,
+          displayName: name,
+        };
+
+        // Оновлення профілю користувача на сервері
+        updateProfile(auth.currentUser, {
+          displayName: name,
+        })
+          .then(() => {
+            console.log('User profile updated successfully:', updatedUser);
+            // Ваш код далі, наприклад, надсилання даних користувача в Redux
             dispatch(
               setUser({
                 email: user.email,
                 id: user.uid,
-                token: accessToken,
                 name: name,
               })
             );
             navigate('catalog');
           })
           .catch((error) => {
-            console.error('Error getting ID token:', error);
+            console.error('Error updating user profile:', error);
           });
       })
       .catch((error) => {
