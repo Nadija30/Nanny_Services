@@ -7,8 +7,10 @@ import { addFav, removeFav } from '../../redux/slise';
 import { PopUp } from '../PopUp/PopUp';
 import { selectFav } from '../../redux/selectors';
 import { Appointment } from '../ApoitmentForm/ApoitmentForm';
+import { useAuth } from '../../hooks/use-auth';
 
 export const CatalogItem = ({ one, isOnFavPage }) => {
+  const { isAutch } = useAuth();
   const [ismore, setIsmore] = useState(false);
   // const [like, setLike] = useState(false);
   const [ispopUp, setPopUp] = useState(false);
@@ -22,7 +24,6 @@ export const CatalogItem = ({ one, isOnFavPage }) => {
   const differenceInYears = todayYear - originalYear;
 
   // коли буде готова логінка, замінити на дані зі стейта
-  const isLoggedIn = true;
 
   // click on heart for logged user or guest
   // checking heart status
@@ -30,10 +31,15 @@ export const CatalogItem = ({ one, isOnFavPage }) => {
   const isLiked = favs.map((fav) => fav.id).includes(one.id);
 
   const toggleFavorite = (itemId) => {
-    console.log(itemId);
-    if (isOnFavPage) {
-      dispatch(removeFav(one));
-    } else isLiked ? dispatch(removeFav(one)) : dispatch(addFav(one));
+    if (isAutch) {
+      if (isOnFavPage) {
+        dispatch(removeFav(one));
+      } else {
+        isLiked ? dispatch(removeFav(one)) : dispatch(addFav(one));
+      }
+    } else {
+      alert('Даний функціонал доступний лише для авторизованих користувачів.');
+    }
   };
 
   const openPopUp = () => {
@@ -72,12 +78,7 @@ export const CatalogItem = ({ one, isOnFavPage }) => {
             <span className={css.price}>{one.price_per_hour}&#36;</span>
           </li>
         </ul>
-        <svg
-          className={css.heart}
-          onClick={
-            isLoggedIn ? () => toggleFavorite(one.id) : () => openPopUp()
-          }
-        >
+        <svg className={css.heart} onClick={() => toggleFavorite(one.id)}>
           {isLiked ? (
             <use href={`${svg}#icon-heart-active`}></use>
           ) : (
