@@ -1,0 +1,1 @@
+import{b as t,j as s,C as o}from"./index-CAZJa5KB.js";import{b as e,C as r,a as i}from"./CatalogFilter-Cz5gjxsO.js";const c=()=>{const a=t(e);return console.log(a),s.jsx("div",{children:s.jsxs(o,{children:[s.jsx(r,{}),s.jsx(i,{data:a})]})})};export{c as default};
