@@ -1,161 +1,179 @@
 .card {
-	display: flex;
-	gap: 24px;
-	padding: 24px;
-	background-color: var(--color-primary-light);
-	border-radius: 24px;
-	position: relative;
+  display: flex;
+  gap: 24px;
+  padding: 24px;
+  background-color: var(--color-primary-light);
+  border-radius: 24px;
+  position: relative;
 }
 .imgWrapper {
-	position: relative;
-	width: 120px;
-	height: 120px;
-	border: 2px solid var(--color-secondary-accent);
-	border-radius: 30px;
-	padding: 12px;
-	flex-shrink: 0;
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border: 2px solid var(--color-secondary-accent);
+  border-radius: 30px;
+  padding: 12px;
+  flex-shrink: 0;
 }
 .avatar {
-	border-radius: 15px;
+  border-radius: 15px;
 }
 .techWrapper {
-	display: flex;
-	gap: 48px;
-	align-items: center;
-	position: absolute;
-	right: 24px;
+  display: flex;
+  gap: 48px;
+  align-items: center;
+  position: absolute;
+  right: 24px;
 }
 .online {
-	position: absolute;
-	top: 9px;
-	right: 11px;
-	display: block;
-	width: 14px;
-	height: 14px;
-	background-color: var(--color-price);
-	border-radius: 50%;
-	border: 2px solid var(--color-primary-light);
+  position: absolute;
+  top: 9px;
+  right: 11px;
+  display: block;
+  width: 14px;
+  height: 14px;
+  background-color: var(--color-price);
+  border-radius: 50%;
+  border: 2px solid var(--color-primary-light);
 }
 .techlist {
-	display: flex;
-	gap: 32px;
+  display: flex;
+  gap: 32px;
 }
 .techItem {
-	position: relative;
-	display: flex;
-	gap: 4px;
-	/* max-width: 100%; */
+  position: relative;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  /* max-width: 100%; */
 }
 .underline {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 .techItem:not(:last-child):after {
-	position: absolute;
-	right: -17px;
-	height: 18px;
-	content: "";
-	border-right: 2px solid var(--color-light);
+  position: absolute;
+  right: -17px;
+  height: 18px;
+  content: '';
+  border-right: 2px solid var(--color-light);
 }
 .nameWrapper {
-	margin-bottom: 24px;
+  color: var(--color-secondary-dark);
+  margin-bottom: 24px;
+}
+.name {
+  color: var(--color-primary-dark);
+  line-height: 1;
+}
+.black {
+  color: var(--color-primary-dark);
+}
+.about {
+  color: var(--color-light-b);
 }
 .infoWrapper {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 8px;
-	margin-bottom: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
 }
 .infoItem {
-	background-color: var(--color-back);
-	border-radius: 24px;
-	padding: 8px 16px;
+  color: var(--color-secondary-dark);
+  background-color: var(--color-back);
+  border-radius: 24px;
+  padding: 8px 16px;
 }
 .star {
-	display: block;
-	width: 16px;
-	height: 16px;
-	fill: var(--color-star);
+  display: block;
+  width: 16px;
+  height: 16px;
+  fill: var(--color-star);
 }
 .pin {
-	display: block;
-	width: 16px;
-	height: 16px;
+  display: block;
+  width: 16px;
+  height: 16px;
 }
 .heart {
-	display: block;
-	width: 26px;
-	height: 26px;
-	cursor: pointer;
-	transition: stroke 150ms linear, fill 150ms linear;
+  display: block;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  transition: stroke 150ms linear, fill 150ms linear;
 }
 .heart:hover {
-	stroke: var(--color-accent);
-	fill: var(--color-accent);
+  stroke: var(--color-accent);
+  fill: var(--color-accent);
 }
 .price {
-	color: var(--color-price);
+  color: var(--color-price);
 }
 .more {
-	margin-top: 14px;
-	text-decoration: underline;
-	font-size: 16px;
-	line-height: 1.5;
-	font-weight: 500;
-	background-color: transparent;
-	border: none;
-	cursor: pointer;
+  margin-top: 14px;
+  text-decoration: underline;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 500;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 .reviews {
-	margin-top: 48px;
+  margin-top: 48px;
 }
 .nameLogo {
-	font-size: 20px;
-	font-weight: 500;
-	width: 44px;
-	height: 44px;
-	color: var(--color-accent);
-	background-color: var(--color-accent-light);
-	border-radius: 50%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  font-size: 20px;
+  line-height: 1;
+  width: 44px;
+  height: 44px;
+  color: var(--color-accent);
+  background-color: var(--color-accent-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .revWrapper {
-	display: flex;
-	gap: 12px;
-	margin-bottom: 16px;
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
 }
 .reviewsList {
-	display: flex;
-	flex-direction: column;
-	gap: 25px;
-	margin-bottom: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 48px;
 }
 .ratingWrapper {
-	display: flex;
-	gap: 8px;
-	font-weight: 500;
-	font-size: 14px;
-	line-height: 1.28;
+  display: flex;
+  gap: 8px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.28;
 }
 .revName {
-	font-size: 16px;
-	line-height: 1.5;
-	font-weight: 500;
-	margin-bottom: 4px;
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+.rating {
+  line-height: 1.28;
+}
+.comment {
+  font-weight: 400;
+  line-height: 1.25;
 }
 .appointment {
-	font-weight: 500;
-	font-size: 16px;
-	line-height: 1.25;
-	padding: 14px 28px;
-	color: var(--color-primary-light);
-	background-color: var(--color-accent);
-	border-radius: 30px;
-	border: none;
-	cursor: pointer;
-	transform: background-color 150ms linear;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  padding: 14px 28px;
+  color: var(--color-primary-light);
+  background-color: var(--color-accent);
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 150ms linear;
 }
 .appointment:hover {
-	background-color: var(--color-accent-hover);
+  background-color: var(--color-accent-hover);
 }

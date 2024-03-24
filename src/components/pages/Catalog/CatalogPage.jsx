@@ -1,31 +1,38 @@
-import { useEffect, useState } from "react";
-import { fetchData } from "../../../firebase/fetch";
-import { Container } from "../../Container/Container";
-import { CatalogList } from "../../CatalogList/CatalogList";
-import { CatalogFilter } from "../../CatalogFilter/CatalogFilter";
+import { useEffect } from 'react';
+import { Container } from '../../Container/Container';
+import { useDispatch, useSelector } from 'react-redux';
+import { CatalogList } from '../../CatalogList/CatalogList';
+import { CatalogFilter } from '../../CatalogFilter/CatalogFilter';
+import { selectNannies } from '../../../redux/selectors';
+import { fetchAllNannies } from '../../../redux/thunk';
 
-const Catalog = () => {
-	const [items, setItems] = useState([]);
+const CatalogPage = () => {
+  const dispatch = useDispatch();
 
-	const fetchDataFromAPI = async () => {
-		try {
-			const data = await fetchData();
-			console.log(data)
-			setItems(data);
-		} catch (error) {
-			console.error('Error fetching data:', error);
-		}
-	};
+  const data = useSelector(selectNannies);
+  // const filter = useSelector(selectFilter);
+  const filter = 'z-to-a';
+  const page = 2;
 
-    useEffect(() => {
-        fetchDataFromAPI();
-    }, [])
-	return <div>
-		<Container>
-			<CatalogFilter/>
-			<CatalogList data={items} />
-		</Container>
-		</div>;
+  // const [localFilter, setLocalFilter] = useState(filter);
+
+  console.log('data from NanniesPage >>', data);
+  console.log('filter from NanniesPage >>', filter);
+
+  useEffect(() => {
+    if (!data || !data.length) {
+      dispatch(fetchAllNannies(filter, page));
+    }
+  }, [dispatch, data, filter]);
+
+  return (
+    <div>
+      <Container>
+        <CatalogFilter />
+        <CatalogList data={data} />
+      </Container>
+    </div>
+  );
 };
 
-export default Catalog;
+export default CatalogPage;

@@ -1,11 +1,20 @@
-import { Container } from "../../Container/Container";
+import { useSelector } from 'react-redux';
+import { CatalogFilter } from '../../CatalogFilter/CatalogFilter';
+import { Container } from '../../Container/Container';
+import { CatalogList } from '../../CatalogList/CatalogList';
+import { selectFav } from '../../../redux/selectors';
 
 const Favorites = () => {
-	return <div>
-	<Container>
-		<div>FavoritesPage</div>
-	</Container>
-	</div>;
+  const data = useSelector(selectFav);
+  console.log(data);
+  return (
+    <div>
+      <Container>
+        <CatalogFilter />
+        <CatalogList data={data} />
+      </Container>
+    </div>
+  );
 };
 
 export default Favorites;
