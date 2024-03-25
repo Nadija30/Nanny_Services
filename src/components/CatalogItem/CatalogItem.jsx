@@ -8,6 +8,8 @@ import { PopUp } from '../PopUp/PopUp';
 import { selectFav } from '../../redux/selectors';
 import { Appointment } from '../ApoitmentForm/ApoitmentForm';
 import { useAuth } from '../../hooks/use-auth';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const CatalogItem = ({ one, isOnFavPage }) => {
   const { isAutch } = useAuth();
@@ -38,7 +40,7 @@ export const CatalogItem = ({ one, isOnFavPage }) => {
         isLiked ? dispatch(removeFav(one)) : dispatch(addFav(one));
       }
     } else {
-      alert('Даний функціонал доступний лише для авторизованих користувачів.');
+      toast.error('This functionality is only available to authorized users.');
     }
   };
 

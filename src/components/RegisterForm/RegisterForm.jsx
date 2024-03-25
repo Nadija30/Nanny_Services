@@ -11,6 +11,8 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
 } from 'firebase/auth';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const registrationValidationSchema = yup.object().shape({
   name: yup
@@ -43,41 +45,44 @@ const RegisterForm = () => {
     setPasswordVisible(!passwordVisible);
   };
 
-  const handleRegister = (email, password, name) => {
-    const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((credential) => {
-        // Реєстрація користувача успішна
-        const user = credential.user;
-        // Оновлення профілю користувача з власною логікою
-        const updatedUser = {
-          ...user,
-          displayName: name,
-        };
+  const handleRegister = async (email, password, name) => {
+    try {
+      const auth = getAuth();
+      const credential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = credential.user;
 
-        // Оновлення профілю користувача на сервері
-        updateProfile(auth.currentUser, {
-          displayName: name,
-        })
-          .then(() => {
-            console.log('User profile updated successfully:', updatedUser);
-            // Ваш код далі, наприклад, надсилання даних користувача в Redux
-            dispatch(
-              setUser({
-                email: user.email,
-                id: user.uid,
-                name: name,
-              })
-            );
-            navigate('catalog');
-          })
-          .catch((error) => {
-            console.error('Error updating user profile:', error);
-          });
-      })
-      .catch((error) => {
-        console.error('Error registering user:', error);
+      const updatedUser = {
+        ...user,
+        displayName: name,
+      };
+
+      await updateProfile(auth.currentUser, {
+        displayName: name,
       });
+
+      dispatch(
+        setUser({
+          email: user.email,
+          id: user.uid,
+          name: name,
+        })
+      );
+      // localStorage.setItem('user', JSON.stringify(userData));
+
+      navigate('catalog');
+    } catch (error) {
+      if (error.code === 'auth/weak-password') {
+        toast.error('Password is too weak.');
+      } else if (error.code === 'auth/email-already-in-use') {
+        toast.error('Email is already in use.');
+      } else {
+        toast.error('An error occurred. Please try again later.');
+      }
+    }
   };
 
   const hasFieldError = (errors, fieldName) => errors[fieldName];

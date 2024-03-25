@@ -7,6 +7,8 @@ import sprite from '../../img/sprite.svg';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../redux/userSlise';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const loginValidationSchema = yup.object().shape({
   email: yup.string().email('Invalid email address').required('Required'),
@@ -33,36 +35,43 @@ const LoginForm = () => {
     setPasswordVisible(!passwordVisible);
   };
 
-  const handleLogin = (email, password) => {
-    const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password)
-      .then(({ user }) => {
-        const userId = user.uid;
-        const userEmail = user.email;
-        const userName = '';
-        user
-          .getIdToken()
-          .then((accessToken) => {
-            console.log('User registered successfully:', user);
-            console.log('Access Token:', accessToken);
-            const userName = user.displayName;
-            dispatch(
-              setUser({
-                email: userEmail,
-                id: userId,
-                token: accessToken,
-                name: userName,
-              })
-            );
-            navigate('catalog');
-          })
-          .catch((error) => {
-            console.error('Error getting ID token:', error);
-          });
-      })
-      .catch((error) => {
-        console.error('Error login user:', error);
-      });
+  const handleLogin = async (email, password) => {
+    try {
+      const auth = getAuth();
+      const { user } = await signInWithEmailAndPassword(auth, email, password);
+
+      const userId = user.uid;
+      const userEmail = user.email;
+      const userName = user.displayName;
+
+      const accessToken = await user.getIdToken();
+
+      dispatch(
+        setUser({
+          email: userEmail,
+          id: userId,
+          token: accessToken,
+          name: userName,
+        })
+      );
+
+      navigate('catalog');
+    } catch (error) {
+      console.error('Error login user:', error);
+
+      let errorMessage =
+        'An error occurred while logging in. Please try again later.';
+
+      // Перевіряємо тип помилки та встановлюємо відповідне повідомлення
+      if (error.code === 'auth/user-not-found') {
+        errorMessage = 'User not found. Please check your email and try again.';
+      } else if (error.code === 'auth/wrong-password') {
+        errorMessage =
+          'Invalid password. Please check your password and try again.';
+      }
+
+      toast.error(errorMessage);
+    }
   };
 
   const hasFieldError = (errors, fieldName) => errors[fieldName];
@@ -147,7 +156,7 @@ const LoginForm = () => {
               disabled={isSubmitting}
               className={css.button}
             >
-              Sign Up
+              Sign In
             </button>
           </div>
         </Form>

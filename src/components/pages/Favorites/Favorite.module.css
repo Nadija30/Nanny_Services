@@ -1,0 +1,7 @@
+.placeholderText {
+  color: #888; /* Колір тексту */
+  font-size: 20px; /* Розмір шрифту */
+  font-weight: 400; /* Товщина шрифту */
+  text-align: center; /* Вирівнювання тексту */
+  margin-top: 20px; /* Відступ зверху */
+}
