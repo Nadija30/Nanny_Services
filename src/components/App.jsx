@@ -1,8 +1,10 @@
 import { Route, Routes, useNavigate, Navigate } from 'react-router-dom';
 import { lazy, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Layout } from './layout';
 import './App.css';
 import { useAuth } from '../hooks/use-auth';
+import { setUser } from '../redux/userSlise';
 
 const Home = lazy(() => import('./pages/Home/HomePage'));
 const Catalog = lazy(() => import('./pages/Catalog/CatalogPage'));
@@ -23,6 +25,16 @@ function PrivateRoute({ element }) {
 }
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const savedUser = localStorage.getItem('user');
+    if (savedUser) {
+      const user = JSON.parse(savedUser);
+      dispatch(setUser(user));
+      // Додайте інші дії тут, якщо потрібно, наприклад, перевірку токену, якщо потрібно
+    }
+  }, [dispatch]);
   return (
     <Routes>
       <Route path="/" element={<Layout />}>

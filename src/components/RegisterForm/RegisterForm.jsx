@@ -71,7 +71,7 @@ const RegisterForm = () => {
           name: name,
         })
       );
-      // localStorage.setItem('user', JSON.stringify(userData));
+      localStorage.setItem('user', JSON.stringify(updatedUser));
 
       navigate('catalog');
     } catch (error) {

@@ -10,6 +10,8 @@ export const selectFilter = (state) => state.nannies.filter;
 
 export const selectFav = (state) => state.nannies.favorites;
 
+export const selectUser = (state) => state.user;
+
 // export const selectVisible = createSelector(
 //   [selectNannies, selectFilter],
 //   (nannies, filter) => {

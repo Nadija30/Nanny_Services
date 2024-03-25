@@ -46,6 +46,16 @@ const LoginForm = () => {
 
       const accessToken = await user.getIdToken();
 
+      localStorage.setItem(
+        'user',
+        JSON.stringify({
+          email: userEmail,
+          id: userId,
+          token: accessToken,
+          displayName: userName,
+        })
+      );
+
       dispatch(
         setUser({
           email: userEmail,
