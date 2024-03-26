@@ -77,7 +77,7 @@ export const CatalogItem = ({ one, isOnFavPage }) => {
           </li>
           <li className={css.techItem}>
             Price / 1 hour:{' '}
-            <span className={css.price}>{one.price_per_hour}&#36;</span>
+            <span className={css.price}>{one.price_per_hour}$</span>
           </li>
         </ul>
         <svg className={css.heart} onClick={() => toggleFavorite(one.id)}>
