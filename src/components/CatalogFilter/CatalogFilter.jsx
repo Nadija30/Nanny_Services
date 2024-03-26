@@ -1,14 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import css from './CatalogFilter.module.css';
 import svg from '../../img/sprite.svg';
 
 export const CatalogFilter = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isPick, setIsPick] = useState('Show all');
+
   const toggleOpen = () => {
     setIsOpen((prev) => !prev);
   };
-  console.log(isPick);
+
   const handlePick = (e) => {
     if (e.target.nodeName !== 'LI') return;
     // if (!e.target.textContent) return;
@@ -17,11 +18,18 @@ export const CatalogFilter = () => {
     setIsOpen(false);
   };
 
-  const closeDropdown = (e) => {
-    if (e.target.dataset.type === 'dropdown') return;
-    setIsOpen(false);
-  };
-  document.addEventListener('click', closeDropdown);
+  useEffect(() => {
+    const closeDropdown = (e) => {
+      if (e.target.dataset.type === 'dropdown') return;
+      setIsOpen(false);
+    };
+
+    document.addEventListener('click', closeDropdown);
+
+    return () => {
+      document.removeEventListener('click', closeDropdown);
+    };
+  }, []);
 
   return (
     <div className={css.filterBar}>
