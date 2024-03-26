@@ -30,6 +30,11 @@ The application implements the following functionalities:
 
 The project is available for viewing at [https://nadija30.github.io/Nanny_Services/].
 
+## Commands:
+
+- npm run dev — start the server in development mode
+- npm run deploy — deploy to GitHub Pages
+
 ### Criteria for Completion
 
 - Responsive, semantic, and valid layout from 320px to 1440px.
