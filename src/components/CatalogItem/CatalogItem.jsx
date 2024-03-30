@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import css from './CatalogItem.module.css';
 import svg from '../../img/sprite.svg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFav, removeFav } from '../../redux/slise';
 import { PopUp } from '../PopUp/PopUp';
@@ -31,6 +31,12 @@ export const CatalogItem = ({ one, isOnFavPage }) => {
   // checking heart status
   const favs = useSelector(selectFav);
   const isLiked = favs.map((fav) => fav.id).includes(one.id);
+  useEffect(() => {
+    // Clear favorites when user logs out
+    if (!isAutch) {
+      dispatch(removeFav());
+    }
+  }, [isAutch, dispatch]);
 
   const toggleFavorite = (itemId) => {
     if (isAutch) {

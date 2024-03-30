@@ -1,18 +1,22 @@
 import css from './UserBar.module.css';
 import { useAuth } from '../../hooks/use-auth';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { removeUser } from '../../redux/userSlise';
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import sprite from '../../img/sprite.svg';
 import { useEffect, useState } from 'react';
+import { selectFav } from '../../redux/selectors';
+import { savePage } from '../../redux/slise';
 
 export const UserBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const favs = useSelector(selectFav);
 
   const handleLogout = () => {
     localStorage.removeItem('user');
+    dispatch(savePage(favs));
     dispatch(removeUser());
     navigate('/');
   };
