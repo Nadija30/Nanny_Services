@@ -45,11 +45,15 @@ export const CatalogItem = ({ one, isOnFavPage }) => {
       } else {
         isLiked ? dispatch(removeFav(one)) : dispatch(addFav(one));
       }
+      // Оновлюємо дані у локальному сховищі
+      const updatedFavorites = isLiked
+        ? favs.filter((fav) => fav.id !== one.id)
+        : [...favs, one];
+      localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
     } else {
       toast.error('This functionality is only available to authorized users.');
     }
   };
-
   const openPopUp = () => {
     setPopUp(true);
   };
