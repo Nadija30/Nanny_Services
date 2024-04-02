@@ -12,7 +12,6 @@ const CatalogPage = () => {
   const [dataLoaded, setDataLoaded] = useState(false);
 
   const applyFilter = (filterCriteria) => {
-    console.log('Applying filter:', filterCriteria);
     let newFilteredCards = [...data]; // Клонуємо список всіх карток
 
     switch (filterCriteria) {
@@ -54,7 +53,6 @@ const CatalogPage = () => {
         // залиште список карток без змін
         break;
     }
-    console.log('Filtered cards:', newFilteredCards);
     setFilteredCards(newFilteredCards); // Встановлюємо відфільтровані картки в стейт
   };
 

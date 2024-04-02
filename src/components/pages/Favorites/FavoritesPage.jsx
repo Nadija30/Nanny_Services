@@ -8,9 +8,7 @@ import { useState } from 'react';
 const Favorites = () => {
   const [filteredCards, setFilteredCards] = useState([]);
   const data = useSelector(selectFav);
-  console.log(data);
   const applyFilter = (filterCriteria) => {
-    console.log('Applying filter:', filterCriteria);
     let newFilteredCards = [...data]; // Клонуємо список всіх карток
 
     switch (filterCriteria) {
@@ -52,7 +50,6 @@ const Favorites = () => {
         // залиште список карток без змін
         break;
     }
-    console.log('Filtered cards:', newFilteredCards);
     setFilteredCards(newFilteredCards); // Встановлюємо відфільтровані картки в стейт
   };
 

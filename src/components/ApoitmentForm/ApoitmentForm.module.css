@@ -91,4 +91,9 @@ input[type='number'] {
   line-height: 1.25;
   font-weight: 500;
   margin-top: 24px;
+  cursor: pointer;
+  transition: background-color 150ms linear;
+}
+.button:hover {
+  background-color: var(--color-accent-hover);
 }

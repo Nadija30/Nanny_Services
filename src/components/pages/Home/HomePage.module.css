@@ -45,6 +45,12 @@
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: -0.2px;
+  cursor: pointer;
+  transition: background-color 150ms linear;
+}
+.button:hover {
+  background-color: var(--color-accent-hover);
+  border-color: var(--color-accent-lighter);
 }
 .butonSvg {
   width: 30px;

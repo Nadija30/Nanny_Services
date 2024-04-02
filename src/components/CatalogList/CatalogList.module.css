@@ -17,10 +17,14 @@
   border: 1px solid var(--color-accent);
   padding: 14px 40px;
   cursor: pointer;
-  transition: border-color 150ms linear, color 150ms linear;
+  transition: border-color 150ms linear;
   display: block;
   margin: 0 auto;
   margin-bottom: 100px;
   width: 159px;
   height: 48px;
+  cursor: pointer;
+}
+.loadMoreButton:hover {
+  background-color: var(--color-accent-hover);
 }

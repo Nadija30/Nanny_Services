@@ -75,6 +75,13 @@
   font-weight: 500;
   line-height: 20px;
   width: 100%;
+  cursor: pointer;
+  border: none;
+  transition: background-color 150ms linear;
+}
+.button:hover {
+  background-color: var(--color-accent-hover);
+  border: var(--color-accent-lighter);
 }
 
 .passwordWrap {
@@ -99,4 +106,5 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }

@@ -19,6 +19,10 @@
   background-color: var(--color-accent);
   border-radius: 14px;
   padding: 14px 18px;
+  cursor: pointer;
+}
+.input:hover {
+  background-color: var(--color-accent-hover);
 }
 .pick {
   pointer-events: none;
