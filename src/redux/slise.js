@@ -15,12 +15,6 @@ const nanniesSlice = createSlice({
   initialState,
 
   reducers: {
-    // toggleFav: (state, { payload }) => {
-    //   state.nannies = state.nannies.map((el) =>
-    //     el.id === payload ? { ...el, isLiked: !el.isLiked } : el
-    //   );
-    // },
-
     addFav(state, action) {
       state.favorites.push(action.payload);
     },

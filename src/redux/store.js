@@ -22,10 +22,9 @@ const nanniesPersistConfig = {
 };
 
 const userConfig = {
-  key: 'root', // Ключ, за яким буде збережено стан
-  storage, // Використовуємо обраний метод збереження
-  whitelist: ['user'], // Вказуємо, які редуктори потрібно зберігати (в даному випадку - 'user')
-  // blacklist: [], // Або можемо вказати, які редуктори не зберігати
+  key: 'root', 
+  storage, 
+  whitelist: ['user'], 
 };
 const persistedReducer = persistReducer(userConfig, userReduser);
 
@@ -33,7 +32,6 @@ export const store = configureStore({
   reducer: {
     user: persistedReducer,
     nannies: persistReducer(nanniesPersistConfig, nanniesReducer),
-    // filter: persistReducer(favCarsPersistConfig, setFilters),
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -32,7 +32,7 @@ function App() {
     if (savedUser) {
       const user = JSON.parse(savedUser);
       dispatch(setUser(user));
-      // Додайте інші дії тут, якщо потрібно, наприклад, перевірку токену, якщо потрібно
+     
     }
   }, [dispatch]);
   return (

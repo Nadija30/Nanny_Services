@@ -4,16 +4,9 @@ import sprite from '../../../img/sprite.svg';
 import { useState } from 'react';
 import Modal from '../../Modal/Modal';
 import LoginForm from '../../LoginForm/LoginForm';
-import { useAuth } from '../../../hooks/use-auth';
-import { useDispatch } from 'react-redux';
-import { removeUser } from '../../../redux/userSlise';
 
 const Home = () => {
-  const dispatch = useDispatch();
-  const { isAutch, email } = useAuth();
-  //   const isLoggedIn = useSelector(selectIsLoggedIn);
-  // const user = useSelector(selectUser);
-  const [isModalOpen, setIsModalOpen] = useState(false); // Стан для відстеження відкриття/закриття модального вікна
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
     setIsModalOpen(true);

@@ -30,7 +30,6 @@ export const PopUp = ({ closePopUp, children }) => {
         >
           <use href={`${svg}#icon-x`}></use>
         </svg>
-        {/* <p>Adding to favorites is only available to logged users.</p> */}
         <div className={css.modalWrapper}>{children}</div>
       </div>
     </div>,

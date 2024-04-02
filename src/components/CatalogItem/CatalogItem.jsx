@@ -14,7 +14,6 @@ import 'react-toastify/dist/ReactToastify.css';
 export const CatalogItem = ({ one, isOnFavPage }) => {
   const { isAutch } = useAuth();
   const [ismore, setIsmore] = useState(false);
-  // const [like, setLike] = useState(false);
   const [ispopUp, setPopUp] = useState(false);
 
   const dispatch = useDispatch();
@@ -25,14 +24,9 @@ export const CatalogItem = ({ one, isOnFavPage }) => {
   const todayYear = today.getFullYear();
   const differenceInYears = todayYear - originalYear;
 
-  // коли буде готова логінка, замінити на дані зі стейта
-
-  // click on heart for logged user or guest
-  // checking heart status
   const favs = useSelector(selectFav);
   const isLiked = favs.map((fav) => fav.id).includes(one.id);
   useEffect(() => {
-    // Clear favorites when user logs out
     if (!isAutch) {
       dispatch(removeFav());
     }
@@ -62,7 +56,6 @@ export const CatalogItem = ({ one, isOnFavPage }) => {
     setPopUp(false);
   };
 
-  // for detailes in card
   const showMore = () => {
     setIsmore(!ismore);
   };

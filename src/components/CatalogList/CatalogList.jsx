@@ -5,7 +5,7 @@ import { nanoid } from 'nanoid';
 export const CatalogList = ({ data, isOnFavPage }) => {
   const [displayedItems, setDisplayedItems] = useState(3);
   const loadMore = () => {
-    setDisplayedItems(displayedItems + 3); // Збільшуємо кількість відображених елементів на 3
+    setDisplayedItems(displayedItems + 3);
   };
   return (
     <div className={css.listWrap}>

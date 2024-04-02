@@ -23,11 +23,10 @@ export const UserBar = () => {
   const [displayName, setDisplayName] = useState(null);
 
   useEffect(() => {
-    // Отримання даних про користувача з локального сховища при завантаженні компоненту
     const savedUser = localStorage.getItem('user');
     if (savedUser) {
       const user = JSON.parse(savedUser);
-      setDisplayName(user.displayName); // Встановлення displayName з локального сховища
+      setDisplayName(user.displayName);
     }
   }, []);
   const { isAutch } = useAuth();

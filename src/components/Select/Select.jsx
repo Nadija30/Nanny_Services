@@ -1,15 +1,5 @@
 import css from './Select.module.css';
-// import { useField } from "formik";
 
-// export const CustomSelect = ({label, ...props})=>{
-//     const [field, meta] = useField(props);
-//     return (
-//         <>
-//         <label>{label}</label>
-//         <ul {...field}{...props}></ul>
-//         </>
-//     )
-// }
 import Select from 'react-select';
 const options = [
   { value: 'chocolate', label: 'Chocolate' },
